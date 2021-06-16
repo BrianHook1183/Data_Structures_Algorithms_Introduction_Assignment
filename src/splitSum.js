@@ -1,12 +1,55 @@
-/**
- * Write a function named splitSum1 that implements algorithm 1 here
+/*
+ function splitSum1
+    accepts tours - an array of group sizes
+
+  calculate the sum of all numbers in the tours array and assign it to a variable named total
+  initialize a variable named preSum to the value 0
+  initialize a variable named postSum to the value of total
+  initialize a variable named smallest to the largest possible number
+
+  for i = 0 to the length of tours - 1 do:
+    set preSum to the sum of preSum and tours[i]
+    set postSum to postSum - tours[i]
+    find the absolute difference between preSum and postSum
+
+    if the difference is less than smallest then
+      set smallest to the difference
+
+  return smallest
  */
+function splitSum1(tours) {
+  const total = tours.reduce((x, y) => x + y);
+  let preSum = 0;
+  let postSum = total;
+  let smallest = Number.POSITIVE_INFINITY;
 
+  for (let i = 0; i <= tours.length - 1; i++) {
+    preSum = preSum + tours[i];
+    postSum = postSum - tours[i];
+    const absDiff = Math.abs(preSum - postSum);
+    if (absDiff < smallest) {
+      smallest = absDiff;
+    }
+  }
+  return smallest;
+}
+/*
+ function splitSum2
+    accepts tours - an array of group sizes
 
-/**
- * Write a function named splitSum2 that implements algorithm 2 here
+  initialize a variable named smallest to the largest possible number
+  for k = 0 to the length of the tours array - 1 do:
+    calculate the sum of numbers from index 0 to index i of tours and assign to a variable named preSum
+    calculate the sum of the numbers from index i + 1 to the end of tours and assign to a variable named postSum
+    find the absolute difference between preSum and postSum
+
+    if the difference is less than smallest then
+      set smallest to the difference
+
+  return smallest
  */
+function splitSum2(tours) {
 
-
+}
 
 module.exports = { splitSum1, splitSum2 };
