@@ -34,8 +34,8 @@ function splitSum1(tours) {
   return smallest;
 }
 /*
- function splitSum2
-    accepts tours - an array of group sizes
+function splitSum2
+  accepts tours - an array of group sizes
 
   initialize a variable named smallest to the largest possible number
   for k = 0 to the length of the tours array - 1 do:
@@ -49,7 +49,23 @@ function splitSum1(tours) {
   return smallest
  */
 function splitSum2(tours) {
+  let smallest = Number.POSITIVE_INFINITY;
+  for (let i = 0; i <= tours.length - 1; i++) {
+    let preSum = 0;
+    let postSum = 0;
+    for (let j = 0; j <= i; j++) {
+      preSum += tours[j];
+    }
+    for (let k = i + 1; k < tours.length; k++) {
+      postSum += tours[k];
+    }
+    const absDiff = Math.abs(preSum - postSum);
+    if (absDiff < smallest) {
+      smallest = absDiff;
+    }
+  }
 
+  return smallest;
 }
 
 module.exports = { splitSum1, splitSum2 };
